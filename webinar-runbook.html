@@ -219,6 +219,7 @@ ls inbox</pre>
           <div class="step">2. Review the prompt files</div>
           <pre>cat prompts/daily-log.md
 cat prompts/weekly-hype.md</pre>
+          <div class="callout"><strong>Date window:</strong> the daily prompt is scoped to today, and the weekly prompt is scoped to the current calendar week. If notes are missing for some days, the output should summarize only the available evidence and note partial coverage instead of inventing filler.</div>
           <div class="step">3. Generate the daily log</div>
           <pre>Work in the folder code-along/02-operational-memory.
 Read the files in inbox/.
@@ -358,10 +359,14 @@ Then create a markdown report in outputs/intake-review.md using the instructions
       <h3>Operational memory — daily log</h3>
       <pre>Work in the folder code-along/02-operational-memory.
 Read the files in inbox/.
+Use only notes that belong to today, based on filenames first and file contents second.
+If there are no notes for today, do not invent a log; briefly state that no entries were captured today.
 Then create outputs/daily-log.md using the instructions in prompts/daily-log.md.</pre>
       <h3>Operational memory — weekly hype doc</h3>
       <pre>Work in the folder code-along/02-operational-memory.
 Read the files in inbox/.
+Use only notes from the current calendar week, based on filenames first and file contents second.
+If the week has gaps, summarize only the available evidence and briefly note that coverage is partial.
 Then create outputs/weekly-hype.md using the instructions in prompts/weekly-hype.md.</pre>
       <h3>Offline communications triage</h3>
       <pre>Work in the folder code-along/03-offline-communications-triage.
