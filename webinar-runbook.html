@@ -63,12 +63,12 @@
     }
     .grid-2 {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 16px;
     }
     .grid-3 {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 1fr;
       gap: 16px;
     }
     .section-title {
@@ -121,8 +121,11 @@
     ul { margin: 8px 0 0 20px; }
     li { margin-bottom: 8px; }
     .small { font-size: 0.94rem; }
+    @media (min-width: 1000px) {
+      .grid-2 { grid-template-columns: 1fr 1fr; }
+      .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    }
     @media (max-width: 900px) {
-      .grid-2, .grid-3 { grid-template-columns: 1fr; }
       h1 { font-size: 1.75rem; }
     }
   </style>
@@ -174,6 +177,12 @@
       <p><strong>Goal:</strong> turn unknown files into a trustworthy intake report.</p>
       <div class="grid-2">
         <div>
+          <h3>Starter files</h3>
+          <ul>
+            <li><code>incoming/customers.csv</code></li>
+            <li><code>incoming/orders.csv</code></li>
+            <li><code>incoming/events.jsonl</code></li>
+          </ul>
           <div class="step">1. Inspect the starter files</div>
           <pre>cd code-along/01-data-intake-review
 ls incoming</pre>
@@ -183,14 +192,6 @@ ls incoming</pre>
           <pre>Work in the folder code-along/01-data-intake-review.
 Read the files in incoming/.
 Then create a markdown report in outputs/intake-review.md using the instructions in prompts/intake-review.md.</pre>
-        </div>
-        <div>
-          <h3>Starter files</h3>
-          <ul>
-            <li><code>incoming/customers.csv</code></li>
-            <li><code>incoming/orders.csv</code></li>
-            <li><code>incoming/events.jsonl</code></li>
-          </ul>
           <h3>You should see</h3>
           <ul>
             <li>a markdown report in <code>outputs/</code></li>
@@ -213,6 +214,13 @@ Then create a markdown report in outputs/intake-review.md using the instructions
       <p><strong>Goal:</strong> turn work residue into daily and weekly momentum docs, then put one of those docs on a schedule with cron.</p>
       <div class="grid-2">
         <div>
+          <h3>Starter files</h3>
+          <ul>
+            <li><code>inbox/2026-04-21-standup.md</code></li>
+            <li><code>inbox/release-draft.md</code></li>
+            <li><code>inbox/customer-feedback.txt</code></li>
+            <li><code>inbox/roadmap-bullets.md</code></li>
+          </ul>
           <div class="step">1. Inspect the starter notes</div>
           <pre>cd ../02-operational-memory
 ls inbox</pre>
@@ -232,15 +240,6 @@ Then create outputs/weekly-hype.md using the instructions in prompts/weekly-hype
           <pre>Create a cron job that works in code-along/02-operational-memory.
 On a daily schedule, read the files in inbox/ and generate outputs/daily-log.md using prompts/daily-log.md.
 Name the job "code-along daily log".</pre>
-        </div>
-        <div>
-          <h3>Starter files</h3>
-          <ul>
-            <li><code>inbox/2026-04-21-standup.md</code></li>
-            <li><code>inbox/release-draft.md</code></li>
-            <li><code>inbox/customer-feedback.txt</code></li>
-            <li><code>inbox/roadmap-bullets.md</code></li>
-          </ul>
           <h3>You should see</h3>
           <ul>
             <li><code>outputs/daily-log.md</code></li>
@@ -273,6 +272,14 @@ cat schedule/heartbeat-note.md</pre>
       <p><strong>Goal:</strong> turn exported mail into an action list.</p>
       <div class="grid-2">
         <div>
+          <h3>Starter files</h3>
+          <ul>
+            <li><code>eml/001-webinar-speaker-confirmation.eml</code></li>
+            <li><code>eml/002-security-review-followup.eml</code></li>
+            <li><code>eml/003-room-change.eml</code></li>
+            <li><code>eml/004-fyi-recording-policy.eml</code></li>
+            <li><code>eml/005-demo-repo-status.eml</code></li>
+          </ul>
           <div class="step">1. Inspect the starter messages</div>
           <pre>cd ../03-offline-communications-triage
 ls eml</pre>
@@ -282,16 +289,6 @@ ls eml</pre>
           <pre>Work in the folder code-along/03-offline-communications-triage.
 Read the .eml files in eml/.
 Then create outputs/email-triage.md using the instructions in prompts/email-triage.md.</pre>
-        </div>
-        <div>
-          <h3>Starter files</h3>
-          <ul>
-            <li><code>eml/001-webinar-speaker-confirmation.eml</code></li>
-            <li><code>eml/002-security-review-followup.eml</code></li>
-            <li><code>eml/003-room-change.eml</code></li>
-            <li><code>eml/004-fyi-recording-policy.eml</code></li>
-            <li><code>eml/005-demo-repo-status.eml</code></li>
-          </ul>
           <h3>You should see</h3>
           <ul>
             <li>a markdown triage report in <code>outputs/</code></li>
