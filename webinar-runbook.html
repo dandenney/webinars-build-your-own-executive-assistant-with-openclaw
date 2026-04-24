@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OpenClaw Webinar Runbook</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #121a30;
+      --panel-2: #18233f;
+      --text: #eef3ff;
+      --muted: #aeb9d6;
+      --accent: #7dd3fc;
+      --accent-2: #c084fc;
+      --good: #86efac;
+      --warn: #fcd34d;
+      --border: #2b3a63;
+      --code: #0a0f1f;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #09111f 0%, #0b1020 100%);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 20px 64px;
+    }
+    header {
+      margin-bottom: 24px;
+      padding: 24px;
+      background: rgba(18, 26, 48, 0.92);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    }
+    h1, h2, h3 { line-height: 1.2; margin: 0 0 12px; }
+    h1 { font-size: 2.2rem; }
+    h2 {
+      font-size: 1.4rem;
+      margin-top: 0;
+      color: var(--accent);
+    }
+    h3 { font-size: 1.05rem; color: var(--text); }
+    p { margin: 0 0 12px; color: var(--muted); }
+    .lede { font-size: 1.05rem; max-width: 75ch; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+    }
+    .card {
+      grid-column: span 12;
+      background: rgba(18, 26, 48, 0.92);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 10px 24px rgba(0,0,0,.18);
+    }
+    .two-col { display: grid; grid-template-columns: 1.2fr 1fr; gap: 16px; }
+    .cols-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .pill {
+      display: inline-block;
+      padding: 6px 10px;
+      margin: 4px 6px 0 0;
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--text);
+      font-size: 0.9rem;
+    }
+    .callout {
+      border-left: 4px solid var(--accent-2);
+      background: rgba(24, 35, 63, 0.75);
+      padding: 14px 16px;
+      border-radius: 12px;
+      margin: 12px 0;
+    }
+    .callout strong { color: var(--text); }
+    ul, ol { margin: 8px 0 0 20px; color: var(--muted); }
+    li { margin-bottom: 8px; }
+    code, pre {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    pre {
+      background: var(--code);
+      color: #dbeafe;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+      overflow: auto;
+      white-space: pre-wrap;
+      margin: 10px 0 0;
+    }
+    .terminal { border-left: 4px solid var(--good); }
+    .webui { border-left: 4px solid var(--accent); }
+    .notes { border-left: 4px solid var(--warn); }
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: baseline;
+      margin-bottom: 14px;
+    }
+    .time {
+      color: var(--good);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .checklist li::marker { color: var(--accent); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+    }
+    th, td {
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      padding: 10px 8px;
+      vertical-align: top;
+      color: var(--muted);
+    }
+    th { color: var(--text); }
+    .small { font-size: 0.92rem; }
+    @media (max-width: 900px) {
+      .two-col, .cols-3 { grid-template-columns: 1fr; }
+      h1 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>OpenClaw Webinar Runbook</h1>
+      <p class="lede">A screenshare-friendly code-along for local-only workflows. Terminal on one side, web UI on the other. The story arc: <strong>data intake review</strong> → <strong>operational memory</strong> → <strong>offline communications triage</strong>.</p>
+      <div>
+        <span class="pill">Local folder only</span>
+        <span class="pill">No live integrations</span>
+        <span class="pill">Enterprise-safe framing</span>
+        <span class="pill">Reviewable markdown artifacts</span>
+      </div>
+    </header>
+
+    <section class="grid">
+      <div class="card">
+        <div class="section-title">
+          <h2>1) Opening framing</h2>
+          <div class="time">~4 min</div>
+        </div>
+        <div class="two-col">
+          <div>
+            <h3>What to say</h3>
+            <ul class="checklist">
+              <li>"We’re staying entirely local today: local folders, local files, no live system connections."</li>
+              <li>"I want to show useful patterns that survive enterprise security review and fit inside a short code-along."</li>
+              <li>"The outputs are markdown artifacts you can inspect, edit, and version."</li>
+            </ul>
+            <div class="callout notes"><strong>Presenter note:</strong> Keep the trust story up front. You want the audience relaxed before you show any automation.</div>
+          </div>
+          <div>
+            <h3>Screen setup</h3>
+            <table class="small">
+              <tr><th>Left</th><th>Right</th></tr>
+              <tr><td>Terminal</td><td>OpenClaw web UI</td></tr>
+              <tr><td>Folder contents, commands, outputs</td><td>Prompts, agent reasoning, artifact generation</td></tr>
+            </table>
+            <div class="callout webui"><strong>Optional line:</strong> "I’m using the web UI so you can see the conversational side, but the work itself is just happening against local files."</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="section-title">
+          <h2>2) Quick product model: soul, heartbeat, cron</h2>
+          <div class="time">~5 min</div>
+        </div>
+        <div class="cols-3">
+          <div>
+            <h3>Soul</h3>
+            <p>Explain that the agent can be shaped with workspace guidance and behavioral preferences, not just one-off prompts.</p>
+          </div>
+          <div>
+            <h3>Heartbeat</h3>
+            <p>Explain that proactive behavior requires wake-ups. No heartbeat means no passive observation loop.</p>
+          </div>
+          <div>
+            <h3>Cron</h3>
+            <p>Explain that scheduled tasks are cleaner than persistent observation when you only need periodic artifacts.</p>
+          </div>
+        </div>
+        <div class="callout notes"><strong>Important:</strong> teach the concept, but don’t let scheduler mechanics take over the demo. The artifacts are the star.</div>
+        <pre>Suggested line:
+"OpenClaw can be passive, proactive, or scheduled. For today, I want you to notice the pattern: files go in, reviewable artifacts come out."</pre>
+      </div>
+
+      <div class="card">
+        <div class="section-title">
+          <h2>3) Demo one: Data intake review</h2>
+          <div class="time">~10 min</div>
+        </div>
+        <p><strong>Tagline:</strong> Turn unknown files into a trustworthy intake report.</p>
+        <div class="two-col">
+          <div>
+            <h3>Prep</h3>
+            <ul>
+              <li>Folder: <code>demo/data-intake/incoming/</code></li>
+              <li>Seed 3–5 files with structural issues, not toy data</li>
+              <li>Output target: <code>demo/data-intake/reports/intake-review.md</code></li>
+            </ul>
+            <h3>Terminal actions</h3>
+            <pre class="terminal">ls demo/data-intake/incoming
+# optionally: open or cat one file briefly</pre>
+            <h3>Prompt</h3>
+            <pre>Review the dropped data files and create a markdown intake report with schema fingerprint, sanity flags, draft data dictionary, and questions to ask before use.
+
+Your job is flagging and documenting, not cleansing.
+Do not modify source files.
+Do not make statistical claims beyond what can be directly observed.
+Do not recommend value-altering fixes.</pre>
+          </div>
+          <div>
+            <h3>What to point out</h3>
+            <ul>
+              <li>Non-destructive review</li>
+              <li>Observed structure, not invented certainty</li>
+              <li>Questions before use are often as valuable as findings</li>
+            </ul>
+            <div class="callout webui"><strong>Strong line:</strong> "This is a first-pass data reviewer, not an ETL pipeline."</div>
+            <h3>Expected output sections</h3>
+            <ul>
+              <li>Files reviewed</li>
+              <li>Schema fingerprint</li>
+              <li>Sanity flags</li>
+              <li>Draft data dictionary</li>
+              <li>Questions before use</li>
+              <li>Recommended next checks</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="section-title">
+          <h2>4) Transition: passive vs proactive</h2>
+          <div class="time">~3 min</div>
+        </div>
+        <p>After demo one, pivot into why file-based automation doesn’t magically happen unless you define when the agent wakes or runs.</p>
+        <pre>Suggested line:
+"If I drop a file in a folder and nothing happens, that’s not a bug — it’s a boundary. The agent needs a wake-up model."</pre>
+        <ul>
+          <li>Heartbeat = passive observation cadence</li>
+          <li>Cron = explicit schedule for repeatable jobs</li>
+          <li>For token-sensitive workflows, use cron when observation is unnecessary</li>
+        </ul>
+        <div class="callout notes"><strong>Demo tip:</strong> don’t literally wait around. Show the config, explain the behavior, then move to the resulting artifact.</div>
+      </div>
+
+      <div class="card">
+        <div class="section-title">
+          <h2>5) Demo two: Operational memory</h2>
+          <div class="time">~11 min</div>
+        </div>
+        <p><strong>Tagline:</strong> Turn work residue into daily and weekly momentum docs.</p>
+        <div class="two-col">
+          <div>
+            <h3>Prep</h3>
+            <ul>
+              <li>Folder: <code>demo/ops-memory/inbox/</code></li>
+              <li>Seed notes: standups, TODOs, release snippets, rough status updates</li>
+              <li>Outputs: <code>daily-log-YYYY-MM-DD.md</code>, <code>weekly-hype-YYYY-WW.md</code></li>
+            </ul>
+            <h3>Terminal actions</h3>
+            <pre class="terminal">ls demo/ops-memory/inbox
+# optionally show a tiny heartbeat or cron example
+# but keep the focus on the generated docs</pre>
+            <h3>Daily prompt</h3>
+            <pre>Review the notes in this folder and generate today’s operational memory log.
+Summarize progress, blockers, notable decisions, and likely next steps.
+Keep it concise, grounded, and useful to a manager.
+Do not invent work that is not supported by the files.</pre>
+            <h3>Weekly prompt</h3>
+            <pre>Generate a weekly hype doc from this folder: wins, momentum, risks, blockers, and next bets.
+Make it polished but not exaggerated.
+Keep the tone crisp and upbeat while staying evidence-based.</pre>
+          </div>
+          <div>
+            <h3>What to emphasize</h3>
+            <ul>
+              <li>This is continuity, not just summarization</li>
+              <li>The input is messy human residue</li>
+              <li>The output is stakeholder-readable</li>
+            </ul>
+            <div class="callout webui"><strong>Strong line:</strong> "Cron is the boring part. The useful part is waking up to a good artifact."</div>
+            <h3>Suggested explanation of heartbeat vs cron</h3>
+            <pre>Heartbeat is useful when you want the agent to periodically notice things.
+Cron is cleaner when you already know the schedule and just want a durable output.</pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="section-title">
+          <h2>6) Demo three: Offline communications triage</h2>
+          <div class="time">~9 min</div>
+        </div>
+        <p><strong>Tagline:</strong> Turn exported mail into an action list.</p>
+        <div class="two-col">
+          <div>
+            <h3>Prep</h3>
+            <ul>
+              <li>Folder: <code>demo/offline-triage/eml/</code></li>
+              <li>Seed 6–12 curated <code>.eml</code> files with real-ish asks</li>
+              <li>Output: <code>demo/offline-triage/outputs/email-triage.md</code></li>
+            </ul>
+            <h3>Terminal actions</h3>
+            <pre class="terminal">ls demo/offline-triage/eml
+# optionally preview one or two subjects</pre>
+            <h3>Prompt</h3>
+            <pre>Review these exported .eml files and produce an action-oriented triage report.
+Extract likely action items, deadlines, waiting-on items, low-priority messages, and ambiguity notes.
+Be careful with uncertainty.
+Do not modify source files or send replies.</pre>
+          </div>
+          <div>
+            <h3>What to emphasize</h3>
+            <ul>
+              <li>This is intentional offline triage, not a fake email demo</li>
+              <li>Ambiguity should be surfaced, not hidden</li>
+              <li>The same pattern becomes more powerful when connected later</li>
+            </ul>
+            <div class="callout webui"><strong>Strong line:</strong> "To keep this safe and reproducible, we’re using exported .eml files today."</div>
+            <h3>Expected output sections</h3>
+            <ul>
+              <li>Message inventory</li>
+              <li>Action items</li>
+              <li>Deadlines / date mentions</li>
+              <li>Waiting on / follow-up needed</li>
+              <li>Low priority / FYI</li>
+              <li>Ambiguity notes</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="section-title">
+          <h2>7) Closing</h2>
+          <div class="time">~3 min</div>
+        </div>
+        <div class="two-col">
+          <div>
+            <h3>Wrap-up line</h3>
+            <pre>Today we stayed local-only on purpose.
+The pattern I want you to take away is simple:
+unknown inputs become reviewable artifacts,
+and those artifacts can be generated on demand, on heartbeat, or on schedule.</pre>
+          </div>
+          <div>
+            <h3>Bridge to the future</h3>
+            <pre>Connections to real systems are where this gets dramatically more valuable.
+But if the local-only version is not already useful, the connected version won’t save it.</pre>
+          </div>
+        </div>
+        <div class="callout notes"><strong>Mission control option:</strong> if time remains, show a simple page that links to the latest generated artifacts. Otherwise assign it as homework.</div>
+      </div>
+
+      <div class="card">
+        <div class="section-title">
+          <h2>8) Mission control (optional flourish or homework)</h2>
+          <div class="time">~2 min</div>
+        </div>
+        <p>Keep it thin. The dashboard should read artifacts, not become a new product.</p>
+        <ul>
+          <li>Latest intake report</li>
+          <li>Latest daily log</li>
+          <li>Latest weekly hype doc</li>
+          <li>Latest email triage report</li>
+          <li>Last run timestamps</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="section-title">
+          <h2>9) Copy/paste prompt bank</h2>
+          <div class="time">Handy</div>
+        </div>
+        <h3>Data intake review</h3>
+        <pre>Review the dropped data files and create a markdown intake report with schema fingerprint, sanity flags, draft data dictionary, and questions to ask before use. Your job is flagging and documenting, not cleansing. Do not modify source files. Do not make statistical claims beyond what can be directly observed. Do not recommend value-altering fixes.</pre>
+        <h3>Operational memory — daily</h3>
+        <pre>Review the notes in this folder and generate today’s operational memory log. Summarize progress, blockers, notable decisions, and likely next steps. Keep it concise, grounded, and useful to a manager. Do not invent work that is not supported by the files.</pre>
+        <h3>Operational memory — weekly hype doc</h3>
+        <pre>Generate a weekly hype doc from this folder: wins, momentum, risks, blockers, and next bets. Make it polished but not exaggerated.</pre>
+        <h3>Offline communications triage</h3>
+        <pre>Review these exported .eml files and produce an action-oriented triage report: actions, deadlines, waiting-ons, low-priority items, and ambiguity notes. Be careful with uncertainty. Do not modify source files or send replies.</pre>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
