@@ -210,7 +210,7 @@ Then create a markdown report in outputs/intake-review.md using the instructions
         <h2>Exercise 2 — Operational memory</h2>
         <div class="time">~12 min</div>
       </div>
-      <p><strong>Goal:</strong> turn work residue into daily and weekly momentum docs.</p>
+      <p><strong>Goal:</strong> turn work residue into daily and weekly momentum docs, then put one of those docs on a schedule with cron.</p>
       <div class="grid-2">
         <div>
           <div class="step">1. Inspect the starter notes</div>
@@ -227,6 +227,10 @@ Then create outputs/daily-log.md using the instructions in prompts/daily-log.md.
           <pre>Work in the folder code-along/02-operational-memory.
 Read the files in inbox/.
 Then create outputs/weekly-hype.md using the instructions in prompts/weekly-hype.md.</pre>
+          <div class="step">5. Set up a cron example</div>
+          <pre>Create a cron job that works in code-along/02-operational-memory.
+On a daily schedule, read the files in inbox/ and generate outputs/daily-log.md using prompts/daily-log.md.
+Name the job "code-along daily log".</pre>
         </div>
         <div>
           <h3>Starter files</h3>
@@ -242,19 +246,20 @@ Then create outputs/weekly-hype.md using the instructions in prompts/weekly-hype
             <li><code>outputs/weekly-hype.md</code></li>
             <li>a grounded summary of progress, blockers, and next steps</li>
             <li>a sharper weekly summary with wins, risks, and next bets</li>
+            <li>a saved cron job for repeatable generation</li>
           </ul>
-          <div class="callout"><strong>Concept note:</strong> this is where heartbeat and cron come in. Heartbeat is useful for periodic noticing; cron is better when the schedule is already known.</div>
+          <div class="callout"><strong>Default automation path:</strong> for this exercise, cron is part of the standard flow because the schedule is known ahead of time.</div>
         </div>
       </div>
       <div class="grid-2 small">
         <div>
-          <h3>Optional file to inspect</h3>
-          <pre>cat schedule/heartbeat-note.md
-cat schedule/cron-examples.md</pre>
+          <h3>Useful file to inspect</h3>
+          <pre>cat schedule/cron-examples.md
+cat schedule/heartbeat-note.md</pre>
         </div>
         <div>
           <h3>Optional stretch</h3>
-          <p>Add one more note to <code>inbox/</code> with a blocker or a win, then regenerate the daily or weekly output.</p>
+          <p>Add one more note to <code>inbox/</code> with a blocker or a win, then regenerate the daily or weekly output or update the cron to target the weekly doc instead.</p>
         </div>
       </div>
     </div>
@@ -324,7 +329,7 @@ Read the files in inbox/ and generate outputs/daily-log.md using prompts/daily-l
 On a weekly schedule, read the same inbox/ folder and generate outputs/weekly-hype.md using prompts/weekly-hype.md.</pre>
         </div>
       </div>
-      <div class="callout"><strong>Recommended pattern:</strong> manual run first, cron for known schedules, heartbeat for periodic noticing.</div>
+      <div class="callout"><strong>Recommended pattern:</strong> manual run first, make cron part of the default workflow when the schedule is known, and use heartbeat for periodic noticing.</div>
     </div>
 
     <div class="card">
