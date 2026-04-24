@@ -154,13 +154,13 @@
         </div>
         <div class="two-col">
           <div>
-            <h3>What to say</h3>
+            <h3>Opening points</h3>
             <ul class="checklist">
               <li>"We’re staying entirely local today: local folders, local files, no live system connections."</li>
-              <li>"I want to show useful patterns that survive enterprise security review and fit inside a short code-along."</li>
+              <li>"This focuses on patterns that fit enterprise security review and a short code-along format."</li>
               <li>"The outputs are markdown artifacts you can inspect, edit, and version."</li>
             </ul>
-            <div class="callout notes"><strong>Presenter note:</strong> Keep the trust story up front. You want the audience relaxed before you show any automation.</div>
+            <div class="callout notes"><strong>Framing note:</strong> Lead with trust, scope, and inspectable outputs before showing automation.</div>
           </div>
           <div>
             <h3>Screen setup</h3>
@@ -169,7 +169,7 @@
               <tr><td>Terminal</td><td>OpenClaw web UI</td></tr>
               <tr><td>Folder contents, commands, outputs</td><td>Prompts, agent reasoning, artifact generation</td></tr>
             </table>
-            <div class="callout webui"><strong>Optional line:</strong> "I’m using the web UI so you can see the conversational side, but the work itself is just happening against local files."</div>
+            <div class="callout webui"><strong>Optional context:</strong> "The web UI shows the conversational layer, but the work itself is happening against local files."</div>
           </div>
         </div>
       </div>
@@ -193,7 +193,7 @@
             <p>Explain that scheduled tasks are cleaner than persistent observation when you only need periodic artifacts.</p>
           </div>
         </div>
-        <div class="callout notes"><strong>Important:</strong> teach the concept, but don’t let scheduler mechanics take over the demo. The artifacts are the star.</div>
+        <div class="callout notes"><strong>Focus:</strong> introduce the concepts briefly; keep the emphasis on the resulting artifacts rather than scheduler mechanics.</div>
         <pre>Suggested line:
 "OpenClaw can be passive, proactive, or scheduled. For today, I want you to notice the pattern: files go in, reviewable artifacts come out."</pre>
       </div>
@@ -257,7 +257,7 @@ Do not recommend value-altering fixes.</pre>
           <li>Cron = explicit schedule for repeatable jobs</li>
           <li>For token-sensitive workflows, use cron when observation is unnecessary</li>
         </ul>
-        <div class="callout notes"><strong>Demo tip:</strong> don’t literally wait around. Show the config, explain the behavior, then move to the resulting artifact.</div>
+        <div class="callout notes"><strong>Flow note:</strong> show the configuration and behavior briefly, then move to the resulting artifact instead of spending time on idle waiting.</div>
       </div>
 
       <div class="card">
@@ -366,7 +366,7 @@ and those artifacts can be generated on demand, on heartbeat, or on schedule.</p
 But if the local-only version is not already useful, the connected version won’t save it.</pre>
           </div>
         </div>
-        <div class="callout notes"><strong>Mission control option:</strong> if time remains, show a simple page that links to the latest generated artifacts. Otherwise assign it as homework.</div>
+        <div class="callout notes"><strong>Mission control option:</strong> if time remains, show a simple page that links to the latest generated artifacts; otherwise leave it as a follow-up exercise.</div>
       </div>
 
       <div class="card">
