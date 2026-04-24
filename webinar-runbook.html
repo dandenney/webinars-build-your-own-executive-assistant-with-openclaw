@@ -303,6 +303,32 @@ Then create outputs/email-triage.md using the instructions in prompts/email-tria
 
     <div class="card">
       <div class="section-title">
+        <h2>Post-session / extra credit</h2>
+        <div class="time">Optional</div>
+      </div>
+      <p>These are good follow-ups after the workshop if you want to automate the same local-folder patterns on your own time.</p>
+      <div class="grid-2">
+        <div>
+          <h3>Heartbeat idea: periodically notice new files</h3>
+          <p class="small">Use this when you want the agent to periodically check a folder and produce a report only when new files appear or something changes.</p>
+          <pre>Watch the folder code-along/01-data-intake-review/incoming as part of a heartbeat-driven workflow.
+If new files appear, review them and create or update outputs/intake-review.md using prompts/intake-review.md.
+If nothing has changed, stay quiet.</pre>
+        </div>
+        <div>
+          <h3>Cron idea: generate artifacts on a schedule</h3>
+          <p class="small">Use this when the schedule is known ahead of time, like a daily log or a weekly summary.</p>
+          <pre>On a daily schedule, work in code-along/02-operational-memory.
+Read the files in inbox/ and generate outputs/daily-log.md using prompts/daily-log.md.
+
+On a weekly schedule, read the same inbox/ folder and generate outputs/weekly-hype.md using prompts/weekly-hype.md.</pre>
+        </div>
+      </div>
+      <div class="callout"><strong>Recommended pattern:</strong> manual run first, cron for known schedules, heartbeat for periodic noticing.</div>
+    </div>
+
+    <div class="card">
+      <div class="section-title">
         <h2>Mission control (optional)</h2>
         <div class="time">Stretch</div>
       </div>
