@@ -1,0 +1,14 @@
+From: Alex Morgan <alex@example.test>
+To: Dan <dan@example.test>
+Subject: RE: Security review questions
+Date: Thu, 23 Apr 2026 13:42:00 -0500
+Message-ID: <002@example.test>
+Content-Type: text/plain; charset="utf-8"
+
+Dan,
+
+Thanks for the notes. The team is fine with a local-only demo as long as there are no live connectors and no uploads of customer data.
+
+One question remains: will attendees need admin rights to install anything? If not, I can mark this as low risk.
+
+- Alex

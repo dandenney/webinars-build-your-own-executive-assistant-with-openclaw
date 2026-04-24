@@ -1,0 +1,7 @@
+People liked:
+- concrete file-based examples
+- markdown outputs they could inspect later
+
+People worried about:
+- security reviews
+- whether setup would eat most of the session

@@ -1,0 +1,5 @@
+{"event_id":"evt_001","customer_id":"C-1001","event_type":"login","event_time":"2026-04-20T14:12:00Z","source":"web"}
+{"event_id":"evt_002","customer_id":"C-1002","event_type":"export","event_time":"2026-04-21 09:31:04","source":"api"}
+{"event_id":"evt_003","customer_id":"1003","event_type":"invite_sent","event_time":"2026/04/21 10:02:17","source":"admin"}
+{"event_id":"evt_004","customer_id":"C-1004","event_type":"Login","event_time":"2026-04-22T02:11:44Z","source":"WEB"}
+{"event_id":"evt_005","customer_id":null,"event_type":"billing_view","event_time":"2026-04-22T08:48:19Z","source":"web"}

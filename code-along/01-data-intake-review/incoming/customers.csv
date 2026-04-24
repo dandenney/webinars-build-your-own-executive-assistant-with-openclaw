@@ -1,0 +1,6 @@
+customer_id,signup_date,plan_tier,region,account_owner,last_seen_at,employee_count
+C-1001,2026-02-14,enterprise,NA,"J. Carter",2026-04-20T14:12:00Z,1250
+C-1002,02/18/2026,pro,EMEA,"L. Singh",2026-04-21 09:30:00,48
+1003,2026/02/21,Enterprise,North America,"A. Kim",,780
+C-1004,2026-02-25,biz,APAC,"M. Chen",2026-04-22T02:11:44Z,
+C-1005,,pro,EMEA,"L. Singh",2026-04-22T18:04:19Z,12

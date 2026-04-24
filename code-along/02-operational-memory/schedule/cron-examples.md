@@ -1,0 +1,9 @@
+# Cron examples
+
+Use cron when the schedule is known and persistent observation is unnecessary.
+
+Examples:
+- Daily log at 5:00 PM local time
+- Weekly hype doc every Friday at 4:30 PM local time
+
+The artifact is the important part; cron is the delivery mechanism.
