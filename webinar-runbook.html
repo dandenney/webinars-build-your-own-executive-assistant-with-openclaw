@@ -152,9 +152,9 @@
         <div>
           <h3>Open these side by side</h3>
           <ul>
-            <li>Terminal</li>
+            <li>This runbook</li>
             <li>OpenClaw web UI</li>
-            <li>This repo folder</li>
+            <li>This repo folder in your IDE or terminal if you want to inspect files directly</li>
           </ul>
         </div>
         <div>
@@ -166,7 +166,7 @@
           </ul>
         </div>
       </div>
-      <div class="callout"><strong>Session framing:</strong> the pattern throughout the workshop is simple: files go in, prompts run locally against those files, and markdown artifacts come out.</div>
+      <div class="callout"><strong>Session framing:</strong> the runbook is the primary guide for the workshop. You can work straight from the prompts here, and optionally use your IDE or terminal to inspect the folders as you go. The pattern throughout the workshop is simple: files go in, prompts run locally against those files, and markdown artifacts come out.</div>
     </div>
 
     <div class="card">
@@ -183,15 +183,29 @@
             <li><code>incoming/orders.csv</code></li>
             <li><code>incoming/events.jsonl</code></li>
           </ul>
-          <div class="step">1. Inspect the starter files</div>
+          <div class="step">1. Paste this prompt into OpenClaw</div>
+          <pre>Review the files in `incoming/` and create a markdown intake report in `outputs/`.
+
+Your job is flagging and documenting, not cleansing.
+
+Include:
+- files reviewed
+- schema fingerprint
+- sanity flags
+- draft data dictionary
+- questions to ask before use
+- recommended next checks
+
+Constraints:
+- do not modify source files
+- do not make statistical claims beyond what can be directly observed
+- do not recommend value-altering fixes
+- be explicit when something is ambiguous</pre>
+          <div class="step">2. Optional: inspect the starter files in your IDE or terminal</div>
           <pre>cd code-along/01-data-intake-review
-ls incoming</pre>
-          <div class="step">2. Review the prompt file</div>
-          <pre>cat prompts/intake-review.md</pre>
-          <div class="step">3. Paste this prompt into OpenClaw</div>
-          <pre>Work in the folder code-along/01-data-intake-review.
-Read the files in incoming/.
-Then create a markdown report in outputs/intake-review.md using the instructions in prompts/intake-review.md.</pre>
+ls incoming
+cat prompts/intake-review.md</pre>
+          <div class="step">3. Let OpenClaw generate the report and review the output in <code>outputs/intake-review.md</code></div>
           <h3>You should see</h3>
           <ul>
             <li>a markdown report in <code>outputs/</code></li>
@@ -221,25 +235,87 @@ Then create a markdown report in outputs/intake-review.md using the instructions
             <li><code>inbox/customer-feedback.txt</code></li>
             <li><code>inbox/roadmap-bullets.md</code></li>
           </ul>
-          <div class="step">1. Inspect the starter notes</div>
+          <div class="step">1. Paste one of these prompts into OpenClaw</div>
+          <div class="step">2. Optional: inspect the starter notes and prompt files in your IDE or terminal</div>
           <pre>cd ../02-operational-memory
-ls inbox</pre>
-          <div class="step">2. Review the prompt files</div>
-          <pre>cat prompts/daily-log.md
+ls inbox
+cat prompts/daily-log.md
 cat prompts/weekly-hype.md</pre>
-          <div class="callout"><strong>Date window:</strong> the daily prompt is scoped to today, and the weekly prompt is scoped to the current calendar week. If notes are missing for some days, the output should summarize only the available evidence and note partial coverage instead of inventing filler.</div>
+          <div class="callout"><strong>Date window:</strong> the daily prompt and the cron example below use the same behavior spec so scheduled runs behave the same way as manual runs. The weekly prompt is scoped to the current calendar week. If notes are missing for some days, the output should summarize only the available evidence and note partial coverage instead of inventing filler.</div>
           <div class="step">3. Generate the daily log</div>
-          <pre>Work in the folder code-along/02-operational-memory.
-Read the files in inbox/.
-Then create outputs/daily-log.md using the instructions in prompts/daily-log.md.</pre>
+          <pre>Review the notes in `inbox/` and generate today's operational memory log in markdown in `outputs/`.
+
+Time window:
+- use only notes that belong to today
+- use filenames first to determine date when possible
+- use file contents as a secondary signal if needed
+- ignore older notes unless a note from today explicitly references them
+
+Focus on:
+- progress
+- blockers
+- notable decisions
+- likely next steps
+
+Constraints:
+- keep it concise and grounded
+- make it useful to a manager or teammate
+- cite filenames when helpful
+- do not invent work that is not supported by the files
+- if there are no notes for today, do not invent a log; instead state briefly that no entries were captured today
+- if today's notes are sparse, summarize only the available evidence and note that coverage is partial</pre>
           <div class="step">4. Generate the weekly hype doc</div>
-          <pre>Work in the folder code-along/02-operational-memory.
-Read the files in inbox/.
-Then create outputs/weekly-hype.md using the instructions in prompts/weekly-hype.md.</pre>
+          <pre>Review the notes in `inbox/` and generate a weekly hype doc in markdown in `outputs/`.
+
+Time window:
+- use only notes from the current calendar week
+- use filenames first to determine which notes belong to the current week
+- use file contents as a secondary signal if needed
+- ignore older notes unless a note from the current week explicitly references them
+
+Include:
+- wins
+- momentum
+- notable changes
+- risks
+- blockers
+- next bets
+
+Constraints:
+- keep the tone crisp and upbeat
+- stay evidence-based
+- do not exaggerate impact
+- if notes exist for only part of the week, summarize only the available evidence and briefly note that coverage is partial
+- do not invent missing daily activity or unsupported progress</pre>
           <div class="step">5. Set up a cron example</div>
-          <pre>Create a cron job that works in code-along/02-operational-memory.
-On a daily schedule, read the files in inbox/ and generate outputs/daily-log.md using prompts/daily-log.md.
-Name the job "code-along daily log".</pre>
+          <pre>Create a cron job named "code-along daily log".
+
+Schedule:
+- Run every day at 9:00 AM
+- Time zone: America/Chicago
+
+Task:
+Review the notes in `inbox/` and generate today's operational memory log in markdown in `outputs/`.
+
+Time window:
+- use only notes that belong to today
+- use filenames first to determine date when possible
+- use file contents as a secondary signal if needed
+- ignore older notes unless a note from today explicitly references them
+
+Focus on:
+- progress
+- blockers
+- notable decisions
+- likely next steps
+
+Constraints:
+- keep it concise and grounded
+- make it useful to a manager or teammate
+- cite filenames when helpful
+- do not invent work that is not supported by the files
+- if there are no notes for today, do not invent a log; instead state briefly that no entries were captured today
+- if today's notes are sparse, summarize only the available evidence and note that coverage is partial</pre>
           <h3>You should see</h3>
           <ul>
             <li><code>outputs/daily-log.md</code></li>
@@ -280,15 +356,26 @@ cat schedule/heartbeat-note.md</pre>
             <li><code>eml/004-fyi-recording-policy.eml</code></li>
             <li><code>eml/005-demo-repo-status.eml</code></li>
           </ul>
-          <div class="step">1. Inspect the starter messages</div>
+          <div class="step">1. Paste this prompt into OpenClaw</div>
+          <pre>Review the `.eml` files in `eml/` and produce an action-oriented markdown triage report in `outputs/`.
+
+Extract:
+- likely action items
+- deadlines or date mentions
+- waiting-on items
+- low-priority or FYI messages
+- ambiguity notes
+
+Constraints:
+- be careful with uncertainty
+- do not modify source files
+- do not send replies
+- this is offline triage from exported mail archives</pre>
+          <div class="step">2. Optional: inspect the starter messages in your IDE or terminal</div>
           <pre>cd ../03-offline-communications-triage
-ls eml</pre>
-          <div class="step">2. Review the prompt file</div>
-          <pre>cat prompts/email-triage.md</pre>
-          <div class="step">3. Paste this prompt into OpenClaw</div>
-          <pre>Work in the folder code-along/03-offline-communications-triage.
-Read the .eml files in eml/.
-Then create outputs/email-triage.md using the instructions in prompts/email-triage.md.</pre>
+ls eml
+cat prompts/email-triage.md</pre>
+          <div class="step">3. Let OpenClaw generate the triage report and review the output in <code>outputs/email-triage.md</code></div>
           <h3>You should see</h3>
           <ul>
             <li>a markdown triage report in <code>outputs/</code></li>
@@ -350,25 +437,112 @@ On a weekly schedule, read the same inbox/ folder and generate outputs/weekly-hy
         <div class="time">Copy/paste</div>
       </div>
       <h3>Data intake review</h3>
-      <pre>Work in the folder code-along/01-data-intake-review.
-Read the files in incoming/.
-Then create a markdown report in outputs/intake-review.md using the instructions in prompts/intake-review.md.</pre>
+      <pre>Review the files in `incoming/` and create a markdown intake report in `outputs/`.
+
+Your job is flagging and documenting, not cleansing.
+
+Include:
+- files reviewed
+- schema fingerprint
+- sanity flags
+- draft data dictionary
+- questions to ask before use
+- recommended next checks
+
+Constraints:
+- do not modify source files
+- do not make statistical claims beyond what can be directly observed
+- do not recommend value-altering fixes
+- be explicit when something is ambiguous</pre>
       <h3>Operational memory — daily log</h3>
-      <pre>Work in the folder code-along/02-operational-memory.
-Read the files in inbox/.
-Use only notes that belong to today, based on filenames first and file contents second.
-If there are no notes for today, do not invent a log; briefly state that no entries were captured today.
-Then create outputs/daily-log.md using the instructions in prompts/daily-log.md.</pre>
+      <pre>Review the notes in `inbox/` and generate today's operational memory log in markdown in `outputs/`.
+
+Time window:
+- use only notes that belong to today
+- use filenames first to determine date when possible
+- use file contents as a secondary signal if needed
+- ignore older notes unless a note from today explicitly references them
+
+Focus on:
+- progress
+- blockers
+- notable decisions
+- likely next steps
+
+Constraints:
+- keep it concise and grounded
+- make it useful to a manager or teammate
+- cite filenames when helpful
+- do not invent work that is not supported by the files
+- if there are no notes for today, do not invent a log; instead state briefly that no entries were captured today
+- if today's notes are sparse, summarize only the available evidence and note that coverage is partial</pre>
+      <h3>Operational memory — daily log cron job</h3>
+      <pre>Create a cron job named "code-along daily log".
+
+Schedule:
+- Run every day at 9:00 AM
+- Time zone: America/Chicago
+
+Task:
+Review the notes in `inbox/` and generate today's operational memory log in markdown in `outputs/`.
+
+Time window:
+- use only notes that belong to today
+- use filenames first to determine date when possible
+- use file contents as a secondary signal if needed
+- ignore older notes unless a note from today explicitly references them
+
+Focus on:
+- progress
+- blockers
+- notable decisions
+- likely next steps
+
+Constraints:
+- keep it concise and grounded
+- make it useful to a manager or teammate
+- cite filenames when helpful
+- do not invent work that is not supported by the files
+- if there are no notes for today, do not invent a log; instead state briefly that no entries were captured today
+- if today's notes are sparse, summarize only the available evidence and note that coverage is partial</pre>
       <h3>Operational memory — weekly hype doc</h3>
-      <pre>Work in the folder code-along/02-operational-memory.
-Read the files in inbox/.
-Use only notes from the current calendar week, based on filenames first and file contents second.
-If the week has gaps, summarize only the available evidence and briefly note that coverage is partial.
-Then create outputs/weekly-hype.md using the instructions in prompts/weekly-hype.md.</pre>
+      <pre>Review the notes in `inbox/` and generate a weekly hype doc in markdown in `outputs/`.
+
+Time window:
+- use only notes from the current calendar week
+- use filenames first to determine which notes belong to the current week
+- use file contents as a secondary signal if needed
+- ignore older notes unless a note from the current week explicitly references them
+
+Include:
+- wins
+- momentum
+- notable changes
+- risks
+- blockers
+- next bets
+
+Constraints:
+- keep the tone crisp and upbeat
+- stay evidence-based
+- do not exaggerate impact
+- if notes exist for only part of the week, summarize only the available evidence and briefly note that coverage is partial
+- do not invent missing daily activity or unsupported progress</pre>
       <h3>Offline communications triage</h3>
-      <pre>Work in the folder code-along/03-offline-communications-triage.
-Read the .eml files in eml/.
-Then create outputs/email-triage.md using the instructions in prompts/email-triage.md.</pre>
+      <pre>Review the `.eml` files in `eml/` and produce an action-oriented markdown triage report in `outputs/`.
+
+Extract:
+- likely action items
+- deadlines or date mentions
+- waiting-on items
+- low-priority or FYI messages
+- ambiguity notes
+
+Constraints:
+- be careful with uncertainty
+- do not modify source files
+- do not send replies
+- this is offline triage from exported mail archives</pre>
     </div>
   </div>
 </body>
