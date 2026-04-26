@@ -1,4 +1,4 @@
-From: Alex Morgan <alex@example.test>
+From: Jordan Lee <jordan@example.test>
 To: Dan <dan@example.test>
 Subject: RE: Security review questions
 Date: Thu, 23 Apr 2026 13:42:00 -0500
@@ -11,4 +11,4 @@ Thanks for the notes. The team is fine with a local-only demo as long as there a
 
 One question remains: will attendees need admin rights to install anything? If not, I can mark this as low risk.
 
-- Alex
+- Jordan
