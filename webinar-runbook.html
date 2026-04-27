@@ -103,6 +103,33 @@
       white-space: pre-wrap;
       margin: 10px 0 0;
     }
+    .copy-block {
+      position: relative;
+    }
+    .copy-block pre {
+      padding-top: 46px;
+    }
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      border: 1px solid var(--border);
+      background: var(--panel-2);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .copy-btn:hover {
+      border-color: var(--accent);
+    }
+    .copy-btn.copied {
+      color: #08111f;
+      background: var(--good);
+      border-color: var(--good);
+    }
     .step {
       display: inline-block;
       font-size: 0.85rem;
@@ -554,5 +581,40 @@ Constraints:
 - this is offline triage from exported mail archives</pre>
     </div>
   </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const blocks = document.querySelectorAll('pre');
+      blocks.forEach((pre) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'copy-block';
+        pre.parentNode.insertBefore(wrapper, pre);
+        wrapper.appendChild(pre);
+
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'copy-btn';
+        button.textContent = 'Copy block';
+        wrapper.appendChild(button);
+
+        button.addEventListener('click', async () => {
+          try {
+            await navigator.clipboard.writeText(pre.textContent);
+            const old = button.textContent;
+            button.textContent = 'Copied';
+            button.classList.add('copied');
+            window.setTimeout(() => {
+              button.textContent = old;
+              button.classList.remove('copied');
+            }, 1500);
+          } catch {
+            button.textContent = 'Copy failed';
+            window.setTimeout(() => {
+              button.textContent = 'Copy block';
+            }, 1500);
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>
