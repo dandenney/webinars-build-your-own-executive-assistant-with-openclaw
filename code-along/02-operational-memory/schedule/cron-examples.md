@@ -7,7 +7,8 @@ Examples:
 - Weekly hype doc every Friday at 4:30 PM local time
 
 Prompt guidance for recurring jobs:
-- the daily job should only use notes from today
+- the daily job should process all notes currently in `inbox/`, even when some notes were created earlier
+- the daily job should attribute timing cautiously and avoid claiming work happened today unless the notes support it
 - the weekly job should only use notes from the current calendar week
 - both jobs should tolerate gaps and summarize only the available evidence
 - neither job should invent missing activity to make the output feel complete

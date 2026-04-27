@@ -241,15 +241,16 @@ cat prompts/intake-review.md</pre>
 ls inbox
 cat prompts/daily-log.md
 cat prompts/weekly-hype.md</pre>
-          <div class="callout"><strong>Date window:</strong> the daily prompt and the cron example below use the same behavior spec so scheduled runs behave the same way as manual runs. The weekly prompt is scoped to the current calendar week. If notes are missing for some days, the output should summarize only the available evidence and note partial coverage instead of inventing filler.</div>
+          <div class="callout"><strong>Inbox rule:</strong> the daily prompt and the cron example below process everything currently in <code>inbox/</code>, even if some notes were written earlier. That keeps Friday notes visible on Monday until they are handled. The output should attribute timing cautiously and note partial coverage instead of inventing filler.</div>
           <div class="step">3. Generate the daily log</div>
-          <pre>Review the notes in `inbox/` and generate today's operational memory log in markdown in `outputs/`.
+          <pre>Review all notes currently in `inbox/` and generate today's operational memory log in markdown in `outputs/`.
 
-Time window:
-- use only notes that belong to today
-- use filenames first to determine date when possible
-- use file contents as a secondary signal if needed
-- ignore older notes unless a note from today explicitly references them
+Processing rules:
+- process all notes currently in inbox, even if the note itself was written on an earlier date
+- use filenames as date/context signals when helpful, but do not exclude a note only because its filename is older than today
+- use file contents to determine what work, decisions, blockers, or next steps are supported by the notes
+- if a note explicitly references earlier work, include that context only when supported by the note
+- be explicit when coverage is partial or timing is ambiguous
 
 Focus on:
 - progress
@@ -262,8 +263,9 @@ Constraints:
 - make it useful to a manager or teammate
 - cite filenames when helpful
 - do not invent work that is not supported by the files
-- if there are no notes for today, do not invent a log; instead state briefly that no entries were captured today
-- if today's notes are sparse, summarize only the available evidence and note that coverage is partial</pre>
+- do not claim that work happened today unless the files support that timing
+- if inbox is empty, state briefly that no entries were available to process
+- if the notes are sparse or undated, summarize only the available evidence and note that timing/coverage is partial</pre>
           <div class="step">4. Generate the weekly hype doc</div>
           <pre>Review the notes in `inbox/` and generate a weekly hype doc in markdown in `outputs/`.
 
@@ -295,13 +297,14 @@ Schedule:
 - Time zone: America/Chicago
 
 Task:
-Review the notes in `inbox/` and generate today's operational memory log in markdown in `outputs/`.
+Review all notes currently in `inbox/` and generate today's operational memory log in markdown in `outputs/`.
 
-Time window:
-- use only notes that belong to today
-- use filenames first to determine date when possible
-- use file contents as a secondary signal if needed
-- ignore older notes unless a note from today explicitly references them
+Processing rules:
+- process all notes currently in inbox, even if the note itself was written on an earlier date
+- use filenames as date/context signals when helpful, but do not exclude a note only because its filename is older than today
+- use file contents to determine what work, decisions, blockers, or next steps are supported by the notes
+- if a note explicitly references earlier work, include that context only when supported by the note
+- be explicit when coverage is partial or timing is ambiguous
 
 Focus on:
 - progress
@@ -314,8 +317,9 @@ Constraints:
 - make it useful to a manager or teammate
 - cite filenames when helpful
 - do not invent work that is not supported by the files
-- if there are no notes for today, do not invent a log; instead state briefly that no entries were captured today
-- if today's notes are sparse, summarize only the available evidence and note that coverage is partial</pre>
+- do not claim that work happened today unless the files support that timing
+- if inbox is empty, state briefly that no entries were available to process
+- if the notes are sparse or undated, summarize only the available evidence and note that timing/coverage is partial</pre>
           <h3>You should see</h3>
           <ul>
             <li><code>outputs/daily-log.md</code></li>
@@ -409,7 +413,8 @@ If nothing has changed, stay quiet.</pre>
           <h3>Cron idea: generate artifacts on a schedule</h3>
           <p class="small">Use this when the schedule is known ahead of time, like a daily log or a weekly summary.</p>
           <pre>On a daily schedule, work in code-along/02-operational-memory.
-Read the files in inbox/ and generate outputs/daily-log.md using prompts/daily-log.md.
+Process everything currently in inbox/ and generate today's operational memory log using prompts/daily-log.md.
+Attribute timing cautiously when notes are undated or older than today.
 
 On a weekly schedule, read the same inbox/ folder and generate outputs/weekly-hype.md using prompts/weekly-hype.md.</pre>
         </div>
@@ -455,13 +460,14 @@ Constraints:
 - do not recommend value-altering fixes
 - be explicit when something is ambiguous</pre>
       <h3>Operational memory — daily log</h3>
-      <pre>Review the notes in `inbox/` and generate today's operational memory log in markdown in `outputs/`.
+      <pre>Review all notes currently in `inbox/` and generate today's operational memory log in markdown in `outputs/`.
 
-Time window:
-- use only notes that belong to today
-- use filenames first to determine date when possible
-- use file contents as a secondary signal if needed
-- ignore older notes unless a note from today explicitly references them
+Processing rules:
+- process all notes currently in inbox, even if the note itself was written on an earlier date
+- use filenames as date/context signals when helpful, but do not exclude a note only because its filename is older than today
+- use file contents to determine what work, decisions, blockers, or next steps are supported by the notes
+- if a note explicitly references earlier work, include that context only when supported by the note
+- be explicit when coverage is partial or timing is ambiguous
 
 Focus on:
 - progress
@@ -474,8 +480,9 @@ Constraints:
 - make it useful to a manager or teammate
 - cite filenames when helpful
 - do not invent work that is not supported by the files
-- if there are no notes for today, do not invent a log; instead state briefly that no entries were captured today
-- if today's notes are sparse, summarize only the available evidence and note that coverage is partial</pre>
+- do not claim that work happened today unless the files support that timing
+- if inbox is empty, state briefly that no entries were available to process
+- if the notes are sparse or undated, summarize only the available evidence and note that timing/coverage is partial</pre>
       <h3>Operational memory — daily log cron job</h3>
       <pre>Create a cron job named "code-along daily log".
 
@@ -484,13 +491,14 @@ Schedule:
 - Time zone: America/Chicago
 
 Task:
-Review the notes in `inbox/` and generate today's operational memory log in markdown in `outputs/`.
+Review all notes currently in `inbox/` and generate today's operational memory log in markdown in `outputs/`.
 
-Time window:
-- use only notes that belong to today
-- use filenames first to determine date when possible
-- use file contents as a secondary signal if needed
-- ignore older notes unless a note from today explicitly references them
+Processing rules:
+- process all notes currently in inbox, even if the note itself was written on an earlier date
+- use filenames as date/context signals when helpful, but do not exclude a note only because its filename is older than today
+- use file contents to determine what work, decisions, blockers, or next steps are supported by the notes
+- if a note explicitly references earlier work, include that context only when supported by the note
+- be explicit when coverage is partial or timing is ambiguous
 
 Focus on:
 - progress
@@ -503,8 +511,9 @@ Constraints:
 - make it useful to a manager or teammate
 - cite filenames when helpful
 - do not invent work that is not supported by the files
-- if there are no notes for today, do not invent a log; instead state briefly that no entries were captured today
-- if today's notes are sparse, summarize only the available evidence and note that coverage is partial</pre>
+- do not claim that work happened today unless the files support that timing
+- if inbox is empty, state briefly that no entries were available to process
+- if the notes are sparse or undated, summarize only the available evidence and note that timing/coverage is partial</pre>
       <h3>Operational memory — weekly hype doc</h3>
       <pre>Review the notes in `inbox/` and generate a weekly hype doc in markdown in `outputs/`.
 
